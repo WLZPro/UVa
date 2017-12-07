@@ -4,7 +4,7 @@
  *  Created on: Dec 5, 2017
  *      Author: root
  */
-/*#include <iostream>
+#include <iostream>
 #include <vector>
 using namespace std;
 int main() {
@@ -44,6 +44,6 @@ int main() {
 		cout << "\nRemaining card: " << cards[remainingCards] << endl;
 	}
 	return 0;
-}*/
+}
 
 

@@ -4,7 +4,7 @@
  *  Created on: Nov 29, 2017
  *      Author: root
  */
-/*
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -66,4 +66,4 @@ int main() {
 	}
 	return 0;
 }
-*/
+

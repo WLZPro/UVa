@@ -4,7 +4,7 @@
  *  Created on: Dec 2, 2017
  *      Author: root
  */
-/*
+
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -14,4 +14,4 @@ int main() {
 		cout << abs(b - a) << endl;
 	}
 }
-*/
+

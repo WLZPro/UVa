@@ -4,7 +4,7 @@
  *  Created on: Nov 30, 2017
  *      Author: root
  */
-/*#include <iostream>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -56,6 +56,6 @@ int main() {
 		cout << "Peter should buy books whose prices are " << iv[minPos] <<" and " <<jv[minPos] << ".\n" <<endl;
 	}
 	return 0;
-}*/
+}
 
 
