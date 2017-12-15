@@ -1,8 +1,8 @@
 
 import java.util.Scanner;
-class Main {
+class UVa11933 {
     public static void main(String[] args) {
-		Main main = new Main();
+		UVa11933 main = new UVa11933();
 		main.begin();
     }
     void begin() {
