@@ -20,23 +20,20 @@ int main() {
     scanf("%d", &cases);
     for (int i = 0; i < cases; i++) {
         scanf("%d", &n);
+        int k = 0;
+        int prev = 0;
         for (int j = 0; j < n; j++) {
             scanf("%d", heights + j);
+            int dist = heights[j] - prev;
+            if (dist > k) {
+                k = dist;
+            }
+            prev = heights[j];
         }
-        int hi = 1000000000, lo = 1, mid;
-        while (hi >= lo) {
-            mid = (hi + lo) / 2;
-            bool can = canplace(mid);
-            if (can) {
-                if (!(canplace(mid - 1))) {
-                    break;
-                }
-                hi = mid - 1;
-            }  else {
-                lo = mid + 1;
-            }   
+        if (!canplace(k)) {
+            k++;
         }
-        printf("Case %d: %d\n", i + 1, mid);
+        printf("Case %d: %d\n", i + 1, k);
     }
     
 }
