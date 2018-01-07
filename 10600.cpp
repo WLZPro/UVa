@@ -66,8 +66,8 @@ int main() {
             flagged.set(mstPos[i]);
             int st_cost = 0;
             UF set2(N + 1);
-            for (int i = 0; i < M; i++) {
-                if (!flagged.test(i)) {
+            for (int j = 0; j < M; j++) {
+                if (!flagged.test(j)) {
                     pair<int, ii> front = edgeList[i];
                     if (!set2.isSameSet(front.second.first, front.second.second)) {
                         st_cost += front.first;
@@ -76,9 +76,7 @@ int main() {
                 }
                 
             }
-            if (st_cost < second_mst_cost && st_cost >= mst_cost) {
-                second_mst_cost = st_cost;
-            }
+            second_mst_cost = st_cost;
         }
         printf("%d %d\n", mst_cost, second_mst_cost);
     }
