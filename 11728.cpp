@@ -1,48 +1,63 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
+
 using namespace std;
 
-bitset<1010> bs;
 vector<int> primes;
-long long memo[1010];
+vector<int> isPrime((int) 1e6, 1);
 
-void sieve() {
-    bs.set();
-    bs[0] = bs[1] = 0;
-    for (int i = 2; i <= 1001; i++) {
-        if (bs[i]) {
-            for (int j = i * i; j <= 1001; j += i) bs[j] = 0;
-            primes.push_back(i);
-        }
+void gen_primes() {
+  isPrime[0] = isPrime[1] = 0;
+  for (int i = 2; i * i <= (int) 1e6; i++) {
+    if (isPrime[i]) {
+      for (int j = i * i; j <= (int) 1e6; j += i) {
+        isPrime[j] = 0;
+      }
+      primes.push_back(i);
     }
+  }
 }
 
-long long sumDiv(long long n) {
-    if (n == 1) return 1;
-    if (memo[n] != -1) return memo[n];
-    long long pf_idx = 0, pf = primes[pf_idx], ans = 1;
-    while (pf * pf <= n) {
-        long long power = 0;
-        while (n % pf == 0) {n /= pf; power++;}
-        ans *= ((long long) pow((double) pf, power + 1.0) - 1) / (pf - 1);
-        pf = primes[++pf_idx];
+long long sumDiv(int x) {
+  int idx = 0;
+  long long ans = 1ll;
+  while (primes[idx] * primes[idx] <= x) {
+    int pw = 0;
+    while (x % primes[idx] == 0) {
+      x /= primes[idx];
+      pw++;
     }
-    if (n != 1) ans *= ((long long) pow((double) n, 2.0) - 1) / (n - 1);
-    return memo[n] = ans;
+    ans *= ((long long) pow(primes[idx], pw + 1.0) - 1) / (primes[idx] - 1);
+    idx++;
+  }
+  if (x > 1) {
+    ans *= ((long long) pow(x, 2) - 1) / (x - 1);
+  }
+  return ans;
+}
+
+vector<int> ans(1001, -1);
+
+void precomp() {
+  gen_primes();
+  for (int i = 1; i <= 1000; i++) {
+    int sum = sumDiv(i);
+    if (sum > 1000) {
+      continue;
+    }
+    ans[sum] = i;
+  }
 }
 
 int main() {
-    int n, caseNow = 1;
-    sieve();
-    memset(memo, -1, sizeof memo);
-    while (scanf("%d", &n), n) {
-        int ans = -1;
-        for (int i = 1; i <= n; i++) {
-            long long sum = sumDiv(i);
-            if (sum == n) {
-                ans = i;
-            }
-        }
-        printf("Case %d: %d\n", caseNow++, ans);
-        //cout << sumDiv(n) << "\n";
-    }
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int s;
+  int qq = 1;
+  precomp();
+  while (cin >> s, s != 0) {
+    cout << "Case " << qq++ << ": " << ans[s] << endl;
+  }
+  return 0;
 }
